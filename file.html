@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Public Transport Tracker Login</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <div class="left-panel">
+      <h1>Track. Ride.<br />Arrive.</h1>
+      <p>Real time GPS tracking for public transport,<br />Stay informed, stay on time.</p>
+      <img class="bus-illustration" src="https://img.icons8.com/fluency/240/bus.png" alt="Bus Illustration" />
+      <div class="footer-links">
+        <a href="#">Terms of Service</a>
+        <a href="#">Privacy Policy</a>
+        <a href="#">Support</a>
+      </div>
+    </div>
+    <div class="right-panel">
+      <div class="toggle-login">
+        <button id="userLoginBtn" class="toggle-btn active">User Login</button>
+        <button id="managerLoginBtn" class="toggle-btn">Manager Login</button>
+      </div>
+      <form id="loginForm" autocomplete="off">
+        <label for="username">Username or ID</label>
+        <input type="text" id="username" placeholder="Enter username or ID" required />
+        <label for="password">Password</label>
+        <input type="password" id="password" placeholder="Enter password" required />
+        <button type="submit" class="login-btn">Login</button>
+        <div class="forgot-link" tabindex="0">Forgot credentials?</div>
+      </form>
+    </div>
+  </div>
+
+  <script src = "script.js"></script>
+
+</body>
+</html>
