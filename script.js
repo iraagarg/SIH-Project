@@ -1,32 +1,62 @@
-const userLoginBtn = document.getElementById('userLoginBtn');
-    const managerLoginBtn = document.getElementById('managerLoginBtn');
-    const loginForm = document.getElementById('loginForm');
+document.addEventListener("DOMContentLoaded", () => {
+  const getStartedBtn = document.querySelector(".get-started-btn");
+  const loginBtn = document.querySelector(".login-button");
+  const signupBtn = document.querySelector(".signup-button");
+  const loginContainer = document.querySelector(".login-container");
+  const signupContainer = document.querySelector(".signup-container");
+  const buttonContainer = document.querySelector(".button-container");
+  const goToSignup = document.querySelector(".go-to-signup");
+  const goToLogin = document.querySelector(".go-to-login");
+  const closeBtns = document.querySelectorAll(".close-btn");
+  const overlayBg = document.querySelector(".overlay-bg");
 
-    function setActiveButton(activeBtn) {
-      if (activeBtn === 'user') {
-        userLoginBtn.classList.add('active');
-        managerLoginBtn.classList.remove('active');
-      } else {
-        managerLoginBtn.classList.add('active');
-        userLoginBtn.classList.remove('active');
-      }
-    }
+  // Show login/signup buttons
+  getStartedBtn.addEventListener("click", () => {
+    buttonContainer.style.display = "flex";
+    getStartedBtn.style.display = "none";
+  });
 
-    userLoginBtn.addEventListener('click', () => {
-      setActiveButton('user');
+  // Show login overlay
+  loginBtn.addEventListener("click", () => {
+    loginContainer.style.display = "flex";
+    signupContainer.style.display = "none";
+    overlayBg.style.display = "block";
+  });
+
+  // Show signup overlay
+  signupBtn.addEventListener("click", () => {
+    signupContainer.style.display = "flex";
+    loginContainer.style.display = "none";
+    overlayBg.style.display = "block";
+  });
+
+  // Switch to signup
+  goToSignup.addEventListener("click", (e) => {
+    e.preventDefault();
+    loginContainer.style.display = "none";
+    signupContainer.style.display = "flex";
+  });
+
+  // Switch to login
+  goToLogin.addEventListener("click", (e) => {
+    e.preventDefault();
+    signupContainer.style.display = "none";
+    loginContainer.style.display = "flex";
+  });
+
+  // Close forms
+  closeBtns.forEach(btn => {
+    btn.addEventListener("click", () => {
+      loginContainer.style.display = "none";
+      signupContainer.style.display = "none";
+      overlayBg.style.display = "none";
     });
+  });
 
-    managerLoginBtn.addEventListener('click', () => {
-      setActiveButton('manager');
-    });
-
-    loginForm.addEventListener('submit', (e) => {
-      e.preventDefault();
-      const username = loginForm.username.value.trim();
-      const password = loginForm.password.value.trim();
-      if(username && password){
-        alert(`Logging in as ${userLoginBtn.classList.contains('active') ? 'User' : 'Manager'}: ${username}`);
-      } else {
-        alert('Please enter username and password');
-      }
-    });
+  // Close if click on background
+  overlayBg.addEventListener("click", () => {
+    loginContainer.style.display = "none";
+    signupContainer.style.display = "none";
+    overlayBg.style.display = "none";
+  });
+});

@@ -3,44 +3,69 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Public Transport Tracker Login</title>
-  <link rel="stylesheet" href="style.css">
+  <title>Public Transport Tracking</title>
+  <link href="style.css" rel="stylesheet">
 </head>
 <body>
-  <div class="container">
-    <div class="left-panel">
-      <h1>Track. Ride.<br />Arrive.</h1>
-      <p>Real time GPS tracking for Public Transport,<br />Stay informed, stay on time.</p>
-      <img class="bus-illustration" src="https://img.icons8.com/fluency/240/bus.png" alt="Bus Illustration" />
-      <div class="footer-links">
-        <a href="#">Terms of Service</a>
-        <a href="#">Privacy Policy</a>
-        <a href="#">Support</a>
+  <div class="main-container">
+
+
+    <div class="landing-page">
+      <div class="landing-left">
+        <h1>Public Transport Tracker</h1>
+        <button class="get-started-btn">Get Started</button>
+        <div class="button-container">
+          <button class="login-button button">Login</button>
+          <button class="signup-button button">Sign Up</button>
+        </div>
+      </div>
+      <div class="landing-right">
+        <img src="https://img.icons8.com/fluency/240/bus.png" alt="Public Transport" class="landing-image"/>
       </div>
     </div>
-    <div class="right-panel">
-      <div class="toggle-login">
-        <button id="userLoginBtn" class="toggle-btn active">User Login</button>
-        <button id="managerLoginBtn" class="toggle-btn">Manager Login</button>
-      </div>
-      <form id="loginForm" autocomplete="off">
-        <label for="username">Username or ID</label>
-        <input type="text" id="username" placeholder="Enter username or ID" required />
-        <label for="password">Password</label>
-        <input type="password" id="password" placeholder="Enter password" required />
-        <button type="submit" class="login-btn">Login</button>
-        <div class="forgot-link" tabindex="0">Forgot credentials?</div>
+
+
+    <div class="overlay-bg"></div>
+
+    <div class="login-container overlay-form">
+      <span class="close-btn">&times;</span>
+      <h2 class="form-title">Login</h2>
+      <form class="login-form" autocomplete="off">
+        <label for="loginUsername">Username or ID</label>
+        <input type="text" id="loginUsername" required />
+
+        <label for="loginPassword">Password</label>
+        <input type="password" id="loginPassword" required />
+
+        <button type="submit" class="form-btn">Login</button>
       </form>
+      <p>Don’t have an account? <a href="#" class="go-to-signup">Sign Up</a></p>
     </div>
 
 
-    <div class="testing-component">
-      Testing 
+    <div class="signup-container overlay-form">
+      <span class="close-btn">&times;</span>
+      <h2 class="form-title">Sign Up</h2>
+      <form class="login-form" autocomplete="off">
+        <label for="signupName">Full Name</label>
+        <input type="text" id="signupName" required />
+
+        <label for="signupMobile">Mobile Number</label>
+        <input type="tel" id="signupMobile" pattern="[0-9]{10}" required />
+
+        <label for="signupEmail">Email</label>
+        <input type="email" id="signupEmail" required />
+
+        <label for="signupPassword">Password</label>
+        <input type="password" id="signupPassword" required />
+
+        <button type="submit" class="form-btn">Sign Up</button>
+      </form>
+      <p>Already have an account? <a href="#" class="go-to-login">Login</a></p>
     </div>
 
   </div>
 
-  <script src = "script.js"></script>
-
+  <script src="script.js" defer></script>
 </body>
 </html>

@@ -1,203 +1,225 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+body,
+html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  font-family: 'Roboto', sans-serif;
+  background: linear-gradient(135deg, #4a90e2, #50e3c2);
+  color: #333;
+}
 
-    body, html {
-      margin: 0; padding: 0; height: 100%;
-      font-family: 'Roboto', sans-serif;
-      background: linear-gradient(135deg, #4a90e2, #50e3c2);
-      display: flex; justify-content: center; align-items: center;
-      color: #333;
-      overflow: hidden;
-    }
+.main-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  width: 100%;
+}
 
-    .container {
-      background: white;
-      max-width: 900px;
-      width: 90%;
-      border-radius: 20px;
-      box-shadow: 0 20px 40px rgba(0,0,0,0.2);
-      display: flex;
-      overflow: hidden;
-      animation: fadeIn 1s ease forwards;
-    }
+/* Landing Page */
+.landing-page {
+  display: flex;
+  background: white;
+  border-radius: 20px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.18);
+  width: 70%;
+  margin: 5% 15%;
+  height: 80vh;
+  overflow: hidden;
+  animation: fadeIn 0.8s ease-in-out;
+  position: relative;
+}
 
-    .left-panel {
-      flex: 1;
-      padding: 3rem;
-      background: #f0f8ff;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      position: relative;
-      animation: slideInLeft 1s ease forwards;
-    }
+.landing-left {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+  width: 50%;
+}
 
-    .left-panel h1 {
-      font-size: 2.5rem;
-      margin-bottom: 0.5rem;
-      font-weight: 700;
-      color: #2c3e50;
-      text-align: center;
-    }
+.landing-left h1 {
+  font-size: 2.7rem;
+  font-weight: 700;
+  margin-bottom: 1.2rem;
+  text-align: left;
+  color: #2c3e50;
+}
 
-    .left-panel p {
-      font-size: 1.1rem;
-      color: #666;
-      text-align: center;
-      margin-bottom: 2.5rem;
-      max-width: 300px;
-    }
+.landing-right {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 50%;
+}
 
-    .bus-illustration {
-      width: 220px;
-      height: auto;
-      animation: float 4s ease-in-out infinite;
-    }
+/* Buttons */
+.get-started-btn,
+.button {
+  background: #4a90e2;
+  color: white;
+  font-weight: 700;
+  padding: 1.1rem 2.2rem;
+  border: none;
+  border-radius: 15px;
+  font-size: 1.3rem;
+  cursor: pointer;
+  margin-top: 2rem;
+  transition: all 0.3s ease;
+  box-shadow: 0 8px 15px rgba(74, 144, 226, 0.32);
+}
 
-    .right-panel {
-      flex: 1;
-      padding: 3rem 4rem;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      animation: slideInRight 1s ease forwards;
-    }
+.get-started-btn:hover,
+.button:hover {
+  background: #357abd;
+  transform: translateY(-2px);
+}
 
-    form {
-      display: flex;
-      flex-direction: column;
-    }
+.button-container {
+  display: none;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+}
 
-    label {
-      margin-bottom: 0.3rem;
-      font-weight: 500;
-      color: #34495e;
-    }
+.overlay-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.45);
+  backdrop-filter: blur(6px);
+  z-index: 5;
+  display: none;
+}
 
-    input[type="text"], input[type="password"] {
-      padding: 0.8rem 1rem;
-      font-size: 1rem;
-      margin-bottom: 1.5rem;
-      border-radius: 10px;
-      border: 1.5px solid #bdc3c7;
-      transition: border-color 0.3s ease;
-    }
 
-    input[type="text"]:focus, input[type="password"]:focus {
-      border-color: #4a90e2;
-      outline: none;
-    }
+.overlay-form {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0.9);
+  background: rgba(255, 255, 255, 0.96);
+  backdrop-filter: blur(10px);
+  border-radius: 20px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
+  padding: 2.5rem 2rem;
+  width: 380px;
+  max-width: 95%;
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  animation: fadeInScale 0.4s ease forwards;
+  z-index: 10;
+}
 
-    .login-btn {
-      background-color: #4a90e2;
-      color: white;
-      font-weight: 700;
-      padding: 1rem;
-      border: none;
-      border-radius: 15px;
-      font-size: 1.15rem;
-      cursor: pointer;
-      transition: background-color 0.3s ease;
-      box-shadow: 0 8px 15px rgba(74, 144, 226, 0.4);
-    }
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
 
-    .login-btn:hover {
-      background-color: #357abd;
-      box-shadow: 0 12px 20px rgba(53, 122, 189, 0.6);
-    }
+@keyframes fadeInScale {
+  from {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.8);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+}
 
-    .toggle-login {
-      margin-bottom: 2rem;
-      display: flex;
-      gap: 10px;
-    }
 
-    .toggle-btn {
-      flex: 1;
-      padding: 0.8rem 0;
-      border: none;
-      border-radius: 50px;
-      cursor: pointer;
-      font-weight: 500;
-      font-size: 1rem;
-      transition: background-color 0.3s ease, color 0.3s ease;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.08);
-      background-color: #f0f0f0;
-      color: #777;
-    }
+.close-btn {
+  position: absolute;
+  top: 12px;
+  right: 18px;
+  font-size: 1.6rem;
+  font-weight: bold;
+  color: #444;
+  cursor: pointer;
+  transition: color 0.3s;
+}
+.close-btn:hover {
+  color: #e74c3c;
+}
 
-    .toggle-btn.active {
-      background-color: #4a90e2;
-      color: white;
-      box-shadow: 0 6px 15px rgba(74, 144, 226, 0.5);
-    }
 
-    .forgot-link {
-      margin-top: 1rem;
-      font-size: 0.9rem;
-      color: #4a90e2;
-      text-align: center;
-      cursor: pointer;
-      text-decoration: underline;
-      user-select: none;
-    }
+.form-title {
+  margin-bottom: 1.5rem;
+  text-align: center;
+  font-size: 1.9rem;
+  font-weight: 700;
+  color: #2c3e50;
+}
 
-    .forgot-link:hover {
-      color: #357abd;
-    }
 
-    .footer-links {
-      position: absolute;
-      bottom: 1rem;
-      display: flex;
-      gap: 1.5rem;
-      font-size: 0.8rem;
-      color: #999;
-      user-select: none;
-    }
+.login-form {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 1rem;
+}
 
-    .footer-links a {
-      color: #999;
-      text-decoration: none;
-      transition: color 0.3s ease;
-    }
+.login-form label {
+  font-weight: 500;
+  color: #444;
+  margin-bottom: 0.3rem;
+}
 
-    .footer-links a:hover {
-      color: #4a90e2;
-    }
+.login-form input {
+  padding: 0.8rem 1rem;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  font-size: 1rem;
+  width: 90%;
+  transition: border 0.2s, box-shadow 0.2s;
+}
 
-    @keyframes fadeIn {
-      from {opacity: 0;}
-      to {opacity: 1;}
-    }
+.login-form input:focus {
+  outline: none;
+  border: 1px solid #4a90e2;
+  box-shadow: 0 0 5px rgba(74, 144, 226, 0.4);
+}
 
-    @keyframes slideInLeft {
-      from {
-        opacity: 0;
-        transform: translateX(-40px);
-      }
-      to {
-        opacity: 1;
-        transform: translateX(0);
-      }
-    }
 
-    @keyframes slideInRight {
-      from {
-        opacity: 0;
-        transform: translateX(40px);
-      }
-      to {
-        opacity: 1;
-        transform: translateX(0);
-      }
-    }
+.form-btn {
+  background: #4a90e2;
+  color: white;
+  font-weight: bold;
+  padding: 0.9rem;
+  border: none;
+  border-radius: 12px;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: background 0.3s, transform 0.2s;
+  margin-top: 0.5rem;
+}
 
-    @keyframes float {
-      0%, 100% {
-        transform: translateY(0);
-      }
-      50% {
-        transform: translateY(-15px);
-      }
-    }
+.form-btn:hover {
+  background: #357abd;
+  transform: translateY(-2px);
+}
+
+/* Footer link */
+.overlay-form p {
+  margin-top: 1rem;
+  font-size: 0.95rem;
+  color: #555;
+}
+
+.overlay-form a {
+  color: #4a90e2;
+  font-weight: 600;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.overlay-form a:hover {
+  color: #357abd;
+}
