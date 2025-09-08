@@ -1,0 +1,248 @@
+{
+  "user_profile": {
+    "user_id": "BTS_USER_001",
+    "name": "Sarah Johnson",
+    "email": "sarah.johnson@email.com",
+    "phone": "+1-555-0123",
+    "role": "Fleet Manager",
+    "company": "Metro Transit Authority",
+    "avatar": "https://images.unsplash.com/photo-1494790108755-2616b612b5c5",
+    "join_date": "2023-01-15",
+    "last_login": "2025-09-07 14:30:00"
+  },
+  "dashboard_features": {
+    "profile_settings": [
+      {
+        "id": "personal_info",
+        "title": "Personal Information",
+        "description": "Update your basic profile information",
+        "fields": [
+          "name",
+          "email",
+          "phone",
+          "avatar",
+          "bio"
+        ]
+      },
+      {
+        "id": "notification_preferences",
+        "title": "Notifications",
+        "description": "Manage how you receive alerts and updates",
+        "fields": [
+          "email_notifications",
+          "sms_alerts",
+          "push_notifications",
+          "alert_frequency"
+        ]
+      },
+      {
+        "id": "security_settings",
+        "title": "Security & Privacy",
+        "description": "Configure security preferences and access controls",
+        "fields": [
+          "two_factor_auth",
+          "password_change",
+          "session_timeout",
+          "privacy_settings"
+        ]
+      },
+      {
+        "id": "dashboard_preferences",
+        "title": "Dashboard Customization",
+        "description": "Personalize your dashboard layout and theme",
+        "fields": [
+          "theme",
+          "dashboard_layout",
+          "widget_preferences",
+          "default_view"
+        ]
+      }
+    ],
+    "bus_tracking_features": [
+      {
+        "id": "real_time_tracking",
+        "title": "Real-time Bus Tracking",
+        "description": "Monitor live locations of all buses in your fleet",
+        "widgets": [
+          "map_view",
+          "bus_list",
+          "route_overview",
+          "status_indicators"
+        ]
+      },
+      {
+        "id": "route_management",
+        "title": "Route Management",
+        "description": "Create, edit, and optimize bus routes",
+        "widgets": [
+          "route_editor",
+          "schedule_manager",
+          "stops_configuration",
+          "optimization_tools"
+        ]
+      },
+      {
+        "id": "driver_management",
+        "title": "Driver Management",
+        "description": "Manage driver profiles, schedules, and performance",
+        "widgets": [
+          "driver_list",
+          "schedule_assignment",
+          "performance_metrics",
+          "communication_tools"
+        ]
+      },
+      {
+        "id": "analytics_reports",
+        "title": "Analytics & Reports",
+        "description": "View detailed insights and generate reports",
+        "widgets": [
+          "performance_charts",
+          "usage_statistics",
+          "fuel_efficiency",
+          "maintenance_reports"
+        ]
+      }
+    ]
+  },
+  "theme_elements": {
+    "discord_inspired": {
+      "colors": {
+        "primary": "#5865F2",
+        "secondary": "#4752C4",
+        "background": "#36393F",
+        "card_background": "#2F3136",
+        "text_primary": "#DCDDDE",
+        "text_secondary": "#96989D",
+        "accent": "#00D166",
+        "danger": "#ED4245"
+      },
+      "typography": {
+        "font_family": "Whitney, Helvetica Neue, Helvetica, Arial, sans-serif",
+        "font_sizes": {
+          "heading_1": "24px",
+          "heading_2": "20px",
+          "body": "16px",
+          "small": "14px"
+        }
+      },
+      "layout": {
+        "sidebar_width": "240px",
+        "border_radius": "8px",
+        "spacing": "16px"
+      }
+    },
+    "github_inspired": {
+      "colors": {
+        "primary": "#238636",
+        "secondary": "#1F6FEB",
+        "background": "#0D1117",
+        "card_background": "#161B22",
+        "text_primary": "#F0F6FC",
+        "text_secondary": "#8B949E",
+        "border": "#30363D",
+        "accent": "#FD7E14"
+      },
+      "typography": {
+        "font_family": "-apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial, sans-serif",
+        "font_sizes": {
+          "heading_1": "32px",
+          "heading_2": "24px",
+          "body": "14px",
+          "small": "12px"
+        }
+      },
+      "layout": {
+        "container_width": "1280px",
+        "border_radius": "6px",
+        "spacing": "16px"
+      }
+    }
+  },
+  "sample_buses": [
+    {
+      "id": "BUS_001",
+      "license_plate": "ABC-123",
+      "route": "Route 42 - Downtown Loop",
+      "driver": "Mike Thompson",
+      "status": "Active",
+      "current_location": {
+        "lat": 40.7128,
+        "lng": -74.006
+      },
+      "passengers": 23,
+      "capacity": 50,
+      "last_update": "2025-09-07 15:45:00"
+    },
+    {
+      "id": "BUS_002",
+      "license_plate": "XYZ-789",
+      "route": "Route 15 - Airport Express",
+      "driver": "Lisa Garcia",
+      "status": "En Route",
+      "current_location": {
+        "lat": 40.7589,
+        "lng": -73.9851
+      },
+      "passengers": 31,
+      "capacity": 45,
+      "last_update": "2025-09-07 15:44:30"
+    }
+  ],
+  "dashboard_widgets": [
+    {
+      "id": "fleet_overview",
+      "title": "Fleet Overview",
+      "type": "stats_cards",
+      "data": {
+        "total_buses": 45,
+        "active_buses": 38,
+        "maintenance": 4,
+        "offline": 3
+      }
+    },
+    {
+      "id": "route_performance",
+      "title": "Route Performance",
+      "type": "chart",
+      "data": {
+        "labels": [
+          "Route 1",
+          "Route 2",
+          "Route 3",
+          "Route 4",
+          "Route 5"
+        ],
+        "values": [
+          92,
+          88,
+          95,
+          83,
+          90
+        ]
+      }
+    },
+    {
+      "id": "real_time_alerts",
+      "title": "Real-time Alerts",
+      "type": "notification_list",
+      "data": [
+        {
+          "type": "warning",
+          "message": "Bus ABC-123 delayed by 10 minutes",
+          "time": "15:30"
+        },
+        {
+          "type": "info",
+          "message": "Route 15 traffic update received",
+          "time": "15:25"
+        },
+        {
+          "type": "success",
+          "message": "Bus XYZ-789 arrived on schedule",
+          "time": "15:20"
+        }
+      ]
+    }
+  ]
+}

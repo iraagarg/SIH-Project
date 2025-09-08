@@ -1,71 +1,712 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Public Transport Tracking</title>
-  <link href="style.css" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Metro Transit Authority - Live GPS Tracking</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
-  <div class="main-container">
-
-
-    <div class="landing-page">
-      <div class="landing-left">
-        <h1>Public Transport Tracker</h1>
-        <button class="get-started-btn">Get Started</button>
-        <div class="button-container">
-          <button class="login-button button">Login</button>
-          <button class="signup-button button">Sign Up</button>
+    <header class="top-nav">
+        <div class="nav-left">
+            <button class="menu-toggle" id="menuToggle">
+                <i class="fas fa-bars"></i>
+            </button>
+            <h1 class="logo">
+                <i class="fas fa-location-dot"></i>
+                Metro Transit GPS
+            </h1>
         </div>
-      </div>
-      <div class="landing-right">
-        <img src="https://img.icons8.com/fluency/240/bus.png" alt="Public Transport" class="landing-image"/>
-      </div>
+        <div class="nav-right">
+            <div class="live-indicator">
+                <div class="live-dot"></div>
+                <span>LIVE</span>
+            </div>
+            <div class="notifications">
+                <button class="notification-btn">
+                    <i class="fas fa-bell"></i>
+                    <span class="notification-badge">3</span>
+                </button>
+            </div>
+            <div class="user-profile-dropdown">
+                <button class="profile-btn" id="profileDropdownBtn">
+                    <img src="#" alt="Profile" class="profile-avatar">
+                    <span class="profile-name">Sarah Johnson</span>
+                    <i class="fas fa-chevron-down"></i>
+                </button>
+                <div class="profile-dropdown" id="profileDropdown">
+                    <div class="dropdown-header">
+                        <img src="#" alt="Profile" class="dropdown-avatar">
+                        <div class="user-info">
+                            <div class="user-name">Sarah Johnson</div>
+                            <div class="user-role">Transit Controller</div>
+                        </div>
+                    </div>
+                    <div class="dropdown-divider"></div>
+                    <a href="#" class="dropdown-item" data-section="profile">
+                        <i class="fas fa-user"></i>
+                        Profile Settings
+                    </a>
+                    <a href="#" class="dropdown-item" data-section="security">
+                        <i class="fas fa-shield-alt"></i>
+                        Security Settings
+                    </a>
+                    <div class="dropdown-divider"></div>
+                    <a href="#" class="dropdown-item">
+                        <i class="fas fa-sign-out-alt"></i>
+                        Sign Out
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="app-container">
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-content">
+                <nav class="nav-menu">
+                    <div class="nav-section">
+                        <div class="nav-section-title">Live Operations</div>
+                        <a href="#" class="nav-item active" data-section="tracking">
+                            <i class="fas fa-satellite-dish"></i>
+                            <span>Live Tracking</span>
+                            <span class="nav-badge gps">GPS</span>
+                        </a>
+                        <a href="#" class="nav-item" data-section="routes">
+                            <i class="fas fa-route"></i>
+                            <span>Routes</span>
+                        </a>
+                        <a href="#" class="nav-item" data-section="drivers">
+                            <i class="fas fa-users"></i>
+                            <span>Drivers</span>
+                        </a>
+                    </div>
+                    <div class="nav-section">
+                        <div class="nav-section-title">Management</div>
+                        <a href="#" class="nav-item" data-section="profile">
+                            <i class="fas fa-user-cog"></i>
+                            <span>Profile</span>
+                        </a>
+                        <a href="#" class="nav-item" data-section="notifications">
+                            <i class="fas fa-bell"></i>
+                            <span>Notifications</span>
+                            <span class="nav-badge alert">3</span>
+                        </a>
+                        <a href="#" class="nav-item" data-section="security">
+                            <i class="fas fa-lock"></i>
+                            <span>Security</span>
+                        </a>
+                    </div>
+                </nav>
+            </div>
+        </aside>
+
+        <main class="main-content">
+            <div class="content-section active" id="tracking-section">
+                <div class="section-header">
+                    <div class="header-content">
+                        <h2><i class="fas fa-satellite-dish"></i> Live GPS Tracking</h2>
+                        <p>Real-time monitoring of all buses in your fleet</p>
+                    </div>
+                    <div class="header-stats">
+                        <div class="stat-pill active">
+                            <i class="fas fa-bus"></i>
+                            <span>38 Active</span>
+                        </div>
+                        <div class="stat-pill">
+                            <i class="fas fa-clock"></i>
+                            <span>32 On Time</span>
+                        </div>
+                        <div class="stat-pill warning">
+                            <i class="fas fa-exclamation-triangle"></i>
+                            <span>6 Delayed</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="tracking-container">
+                    <div class="map-container">
+                        <div class="map-header">
+                            <div class="map-controls">
+                                <button class="map-btn active">
+                                    <i class="fas fa-map"></i>
+                                    Map View
+                                </button>
+                                <button class="map-btn">
+                                    <i class="fas fa-satellite"></i>
+                                    Lite View
+                                </button>
+                            </div>
+                            <div class="map-legend">
+                                <div class="legend-item">
+                                    <div class="legend-dot active"></div>
+                                    <span>Active</span>
+                                </div>
+                                <div class="legend-item">
+                                    <div class="legend-dot enroute"></div>
+                                    <span>En Route</span>
+                                </div>
+                                <div class="legend-item">
+                                    <div class="legend-dot stopped"></div>
+                                    <span>At Stop</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="map-display">
+                            <div class="gps-overlay">
+                                <div class="gps-grid"></div>
+                                <div class="bus-marker active" style="top: 30%; left: 25%;">
+                                    <i class="fas fa-bus"></i>
+                                    <span class="bus-id">DL-1234</span>
+                                </div>
+                                <div class="bus-marker enroute" style="top: 60%; left: 70%;">
+                                    <i class="fas fa-bus"></i>
+                                    <span class="bus-id">DL-5678</span>
+                                </div>
+                                <div class="bus-marker stopped" style="top: 45%; left: 50%;">
+                                    <i class="fas fa-bus"></i>
+                                    <span class="bus-id">DL-9012</span>
+                                </div>
+                                <div class="route-line"></div>
+                            </div>
+                            <div class="map-placeholder">
+                                <i class="fas fa-map-location-dot"></i>
+                                <p>GPS Tracking Active</p>
+                                <small>Real-time bus locations displayed</small>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="bus-panel">
+                        <div class="panel-header">
+                            <h3><i class="fas fa-location-dot"></i> Live Fleet</h3>
+                            <div class="refresh-btn" id="refreshData">
+                                <i class="fas fa-sync-alt"></i>
+                            </div>
+                        </div>
+                        
+                        <div class="bus-list">
+                            <div class="bus-card active">
+                                <div class="bus-header">
+                                    <div class="bus-status-dot active"></div>
+                                    <div class="bus-info">
+                                        <div class="bus-number">DL-1234</div>
+                                        <div class="bus-route">Route 42 - Connaught Place Loop</div>
+                                    </div>
+                                    <div class="gps-indicator">
+                                        <i class="fas fa-satellite-dish"></i>
+                                    </div>
+                                </div>
+                                <div class="bus-details">
+                                    <div class="detail-row">
+                                        <span class="detail-label">Driver:</span>
+                                        <span class="detail-value">Rajesh Kumar</span>
+                                    </div>
+                                    <div class="detail-row">
+                                        <span class="detail-label">Passengers:</span>
+                                        <span class="detail-value">32/50</span>
+                                    </div>
+                                    <div class="detail-row">
+                                        <span class="detail-label">Speed:</span>
+                                        <span class="detail-value">25 km/h</span>
+                                    </div>
+                                    <div class="detail-row">
+                                        <span class="detail-label">Last Update:</span>
+                                        <span class="detail-value">16:05:00</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="bus-card enroute">
+                                <div class="bus-header">
+                                    <div class="bus-status-dot enroute"></div>
+                                    <div class="bus-info">
+                                        <div class="bus-number">DL-5678</div>
+                                        <div class="bus-route">Route 15 - Airport Express</div>
+                                    </div>
+                                    <div class="gps-indicator">
+                                        <i class="fas fa-satellite-dish"></i>
+                                    </div>
+                                </div>
+                                <div class="bus-details">
+                                    <div class="detail-row">
+                                        <span class="detail-label">Driver:</span>
+                                        <span class="detail-value">Priya Sharma</span>
+                                    </div>
+                                    <div class="detail-row">
+                                        <span class="detail-label">Passengers:</span>
+                                        <span class="detail-value">18/45</span>
+                                    </div>
+                                    <div class="detail-row">
+                                        <span class="detail-label">Speed:</span>
+                                        <span class="detail-value">35 km/h</span>
+                                    </div>
+                                    <div class="detail-row">
+                                        <span class="detail-label">Last Update:</span>
+                                        <span class="detail-value">16:04:45</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="bus-card stopped">
+                                <div class="bus-header">
+                                    <div class="bus-status-dot stopped"></div>
+                                    <div class="bus-info">
+                                        <div class="bus-number">DL-9012</div>
+                                        <div class="bus-route">Route 23 - Metro Link</div>
+                                    </div>
+                                    <div class="gps-indicator">
+                                        <i class="fas fa-satellite-dish"></i>
+                                    </div>
+                                </div>
+                                <div class="bus-details">
+                                    <div class="detail-row">
+                                        <span class="detail-label">Driver:</span>
+                                        <span class="detail-value">Anil Verma</span>
+                                    </div>
+                                    <div class="detail-row">
+                                        <span class="detail-label">Passengers:</span>
+                                        <span class="detail-value">27/40</span>
+                                    </div>
+                                    <div class="detail-row">
+                                        <span class="detail-label">Speed:</span>
+                                        <span class="detail-value">0 km/h</span>
+                                    </div>
+                                    <div class="detail-row">
+                                        <span class="detail-label">Last Update:</span>
+                                        <span class="detail-value">16:05:30</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Routes Section -->
+            <div class="content-section" id="routes-section">
+                <div class="section-header">
+                    <h2><i class="fas fa-route"></i> Route Management</h2>
+                    <p>Create, edit, and optimize bus routes</p>
+                </div>
+                
+                <div class="routes-container">
+                    <div class="routes-grid">
+                        <div class="route-card">
+                            <div class="route-header">
+                                <div class="route-status active"></div>
+                                <h3>Route 42</h3>
+                                <button class="btn btn--sm btn--primary">
+                                    <i class="fas fa-edit"></i>
+                                </button>
+                            </div>
+                            <div class="route-info">
+                                <h4>Connaught Place Loop</h4>
+                                <div class="route-stats">
+                                    <div class="route-stat">
+                                        <i class="fas fa-map-pin"></i>
+                                        <span>12 Stops</span>
+                                    </div>
+                                    <div class="route-stat">
+                                        <i class="fas fa-road"></i>
+                                        <span>15.2 km</span>
+                                    </div>
+                                    <div class="route-stat">
+                                        <i class="fas fa-clock"></i>
+                                        <span>45 min</span>
+                                    </div>
+                                    <div class="route-stat">
+                                        <i class="fas fa-bus"></i>
+                                        <span>3 Buses</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="route-card">
+                            <div class="route-header">
+                                <div class="route-status active"></div>
+                                <h3>Route 15</h3>
+                                <button class="btn btn--sm btn--primary">
+                                    <i class="fas fa-edit"></i>
+                                </button>
+                            </div>
+                            <div class="route-info">
+                                <h4>Airport Express</h4>
+                                <div class="route-stats">
+                                    <div class="route-stat">
+                                        <i class="fas fa-map-pin"></i>
+                                        <span>8 Stops</span>
+                                    </div>
+                                    <div class="route-stat">
+                                        <i class="fas fa-road"></i>
+                                        <span>28.7 km</span>
+                                    </div>
+                                    <div class="route-stat">
+                                        <i class="fas fa-clock"></i>
+                                        <span>35 min</span>
+                                    </div>
+                                    <div class="route-stat">
+                                        <i class="fas fa-bus"></i>
+                                        <span>2 Buses</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="route-card">
+                            <div class="route-header">
+                                <div class="route-status active"></div>
+                                <h3>Route 23</h3>
+                                <button class="btn btn--sm btn--primary">
+                                    <i class="fas fa-edit"></i>
+                                </button>
+                            </div>
+                            <div class="route-info">
+                                <h4>Metro Link</h4>
+                                <div class="route-stats">
+                                    <div class="route-stat">
+                                        <i class="fas fa-map-pin"></i>
+                                        <span>15 Stops</span>
+                                    </div>
+                                    <div class="route-stat">
+                                        <i class="fas fa-road"></i>
+                                        <span>22.3 km</span>
+                                    </div>
+                                    <div class="route-stat">
+                                        <i class="fas fa-clock"></i>
+                                        <span>55 min</span>
+                                    </div>
+                                    <div class="route-stat">
+                                        <i class="fas fa-bus"></i>
+                                        <span>4 Buses</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Drivers Section -->
+            <div class="content-section" id="drivers-section">
+                <div class="section-header">
+                    <h2><i class="fas fa-users"></i> Driver Management</h2>
+                    <p>Manage driver profiles, schedules, and assignments</p>
+                </div>
+                
+                <div class="drivers-container">
+                    <div class="drivers-grid">
+                        <div class="driver-card">
+                            <div class="driver-avatar">
+                                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop&crop=faces" alt="Rajesh Kumar">
+                                <div class="status-indicator active"></div>
+                            </div>
+                            <div class="driver-info">
+                                <h3>Rajesh Kumar</h3>
+                                <p class="driver-role">Senior Driver</p>
+                                <div class="driver-details">
+                                    <div class="detail-item">
+                                        <i class="fas fa-id-card"></i>
+                                        <span>DL-2023-001234</span>
+                                    </div>
+                                    <div class="detail-item">
+                                        <i class="fas fa-route"></i>
+                                        <span>Route 42</span>
+                                    </div>
+                                    <div class="detail-item">
+                                        <i class="fas fa-star"></i>
+                                        <span>4.8 Rating</span>
+                                    </div>
+                                    <div class="detail-item">
+                                        <i class="fas fa-calendar"></i>
+                                        <span>8 Years</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="driver-card">
+                            <div class="driver-avatar">
+                                <img src="https://images.unsplash.com/photo-1494790108755-2616b612b5c5?w=150&h=150&fit=crop&crop=faces" alt="Priya Sharma">
+                                <div class="status-indicator active"></div>
+                            </div>
+                            <div class="driver-info">
+                                <h3>Priya Sharma</h3>
+                                <p class="driver-role">Express Driver</p>
+                                <div class="driver-details">
+                                    <div class="detail-item">
+                                        <i class="fas fa-id-card"></i>
+                                        <span>DL-2023-001235</span>
+                                    </div>
+                                    <div class="detail-item">
+                                        <i class="fas fa-route"></i>
+                                        <span>Route 15</span>
+                                    </div>
+                                    <div class="detail-item">
+                                        <i class="fas fa-star"></i>
+                                        <span>4.9 Rating</span>
+                                    </div>
+                                    <div class="detail-item">
+                                        <i class="fas fa-calendar"></i>
+                                        <span>5 Years</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="driver-card">
+                            <div class="driver-avatar">
+                                <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150&h=150&fit=crop&crop=faces" alt="Anil Verma">
+                                <div class="status-indicator active"></div>
+                            </div>
+                            <div class="driver-info">
+                                <h3>Anil Verma</h3>
+                                <p class="driver-role">Metro Driver</p>
+                                <div class="driver-details">
+                                    <div class="detail-item">
+                                        <i class="fas fa-id-card"></i>
+                                        <span>DL-2023-001236</span>
+                                    </div>
+                                    <div class="detail-item">
+                                        <i class="fas fa-route"></i>
+                                        <span>Route 23</span>
+                                    </div>
+                                    <div class="detail-item">
+                                        <i class="fas fa-star"></i>
+                                        <span>4.7 Rating</span>
+                                    </div>
+                                    <div class="detail-item">
+                                        <i class="fas fa-calendar"></i>
+                                        <span>12 Years</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Profile Settings Section -->
+            <div class="content-section" id="profile-section">
+                <div class="section-header">
+                    <h2><i class="fas fa-user-cog"></i> Profile Settings</h2>
+                    <p>Manage your personal information and preferences</p>
+                </div>
+                
+                <div class="settings-container">
+                    <div class="settings-card">
+                        <div class="settings-header">
+                            <i class="fas fa-user"></i>
+                            <div>
+                                <h3>Personal Information</h3>
+                                <p>Update your basic profile information</p>
+                            </div>
+                        </div>
+                        <form class="settings-form">
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label class="form-label">Full Name</label>
+                                    <input type="text" class="form-control" value="Sarah Johnson">
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">Email Address</label>
+                                    <input type="email" class="form-control" value="sarah.johnson@email.com">
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label class="form-label">Phone Number</label>
+                                    <input type="tel" class="form-control" value="+1-555-0123">
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">Role</label>
+                                    <select class="form-control">
+                                        <option selected>Transit Controller</option>
+                                        <option>Dispatcher</option>
+                                        <option>Administrator</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Company</label>
+                                <input type="text" class="form-control" value="Metro Transit Authority">
+                            </div>
+                            <div class="form-actions">
+                                <button type="button" class="btn btn--outline">Cancel</button>
+                                <button type="submit" class="btn btn--primary">Save Changes</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Notifications Section -->
+            <div class="content-section" id="notifications-section">
+                <div class="section-header">
+                    <h2><i class="fas fa-bell"></i> Notifications Center</h2>
+                    <p>View real-time alerts and manage notification preferences</p>
+                </div>
+                
+                <div class="notifications-container">
+                    <div class="alerts-panel">
+                        <h3><i class="fas fa-exclamation-circle"></i> Live Alerts</h3>
+                        <div class="alerts-list">
+                            <div class="alert-card warning">
+                                <div class="alert-icon">
+                                    <i class="fas fa-exclamation-triangle"></i>
+                                </div>
+                                <div class="alert-content">
+                                    <h4>Route Delay</h4>
+                                    <p>Bus DL-1234 delayed by 8 minutes due to traffic</p>
+                                    <div class="alert-meta">
+                                        <span class="alert-route">Route 42</span>
+                                        <span class="alert-time">16:05</span>
+                                    </div>
+                                </div>
+                                <div class="alert-priority medium">
+                                    Medium
+                                </div>
+                            </div>
+
+                            <div class="alert-card success">
+                                <div class="alert-icon">
+                                    <i class="fas fa-check-circle"></i>
+                                </div>
+                                <div class="alert-content">
+                                    <h4>On Schedule</h4>
+                                    <p>Bus DL-5678 arrived on time at Terminal 3</p>
+                                    <div class="alert-meta">
+                                        <span class="alert-route">Route 15</span>
+                                        <span class="alert-time">16:03</span>
+                                    </div>
+                                </div>
+                                <div class="alert-priority low">
+                                    Low
+                                </div>
+                            </div>
+
+                            <div class="alert-card info">
+                                <div class="alert-icon">
+                                    <i class="fas fa-satellite-dish"></i>
+                                </div>
+                                <div class="alert-content">
+                                    <h4>GPS Update</h4>
+                                    <p>Real-time tracking restored for Bus DL-9012</p>
+                                    <div class="alert-meta">
+                                        <span class="alert-route">Route 23</span>
+                                        <span class="alert-time">16:01</span>
+                                    </div>
+                                </div>
+                                <div class="alert-priority low">
+                                    Low
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="settings-card">
+                        <div class="settings-header">
+                            <i class="fas fa-cog"></i>
+                            <div>
+                                <h3>Notification Preferences</h3>
+                                <p>Configure how you receive alerts</p>
+                            </div>
+                        </div>
+                        <div class="toggle-settings">
+                            <div class="toggle-item">
+                                <div class="toggle-info">
+                                    <div class="toggle-label">GPS Tracking Alerts</div>
+                                    <div class="toggle-description">Real-time location updates</div>
+                                </div>
+                                <div class="toggle-switch">
+                                    <input type="checkbox" id="gpsToggle" checked>
+                                    <label for="gpsToggle"></label>
+                                </div>
+                            </div>
+                            <div class="toggle-item">
+                                <div class="toggle-info">
+                                    <div class="toggle-label">Route Delays</div>
+                                    <div class="toggle-description">Bus delay notifications</div>
+                                </div>
+                                <div class="toggle-switch">
+                                    <input type="checkbox" id="delayToggle" checked>
+                                    <label for="delayToggle"></label>
+                                </div>
+                            </div>
+                            <div class="toggle-item">
+                                <div class="toggle-info">
+                                    <div class="toggle-label">Driver Updates</div>
+                                    <div class="toggle-description">Driver status changes</div>
+                                </div>
+                                <div class="toggle-switch">
+                                    <input type="checkbox" id="driverToggle">
+                                    <label for="driverToggle"></label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Security Section -->
+            <div class="content-section" id="security-section">
+                <div class="section-header">
+                    <h2><i class="fas fa-shield-alt"></i> Security Settings</h2>
+                    <p>Configure account security and privacy preferences</p>
+                </div>
+                
+                <div class="settings-container">
+                    <div class="settings-card">
+                        <div class="settings-header">
+                            <i class="fas fa-shield-alt"></i>
+                            <div>
+                                <h3>Account Security</h3>
+                                <p>Manage your account security settings</p>
+                            </div>
+                        </div>
+                        <div class="security-settings">
+                            <div class="security-item">
+                                <div class="security-info">
+                                    <div class="security-label">Two-Factor Authentication</div>
+                                    <div class="security-description">Add an extra layer of security to your account</div>
+                                </div>
+                                <button class="btn btn--primary btn--sm">Enable 2FA</button>
+                            </div>
+                            <div class="security-item">
+                                <div class="security-info">
+                                    <div class="security-label">Password Security</div>
+                                    <div class="security-description">Last changed 30 days ago</div>
+                                </div>
+                                <button class="btn btn--outline btn--sm">Change Password</button>
+                            </div>
+                            <div class="security-item">
+                                <div class="security-info">
+                                    <div class="security-label">Session Management</div>
+                                    <div class="security-description">Auto-logout after inactivity</div>
+                                </div>
+                                <select class="form-control" style="width: auto;">
+                                    <option>30 minutes</option>
+                                    <option selected>1 hour</option>
+                                    <option>4 hours</option>
+                                    <option>Never</option>
+                                </select>
+                            </div>
+                            <div class="security-item">
+                                <div class="security-info">
+                                    <div class="security-label">Data Privacy</div>
+                                    <div class="security-description">Control your data sharing preferences</div>
+                                </div>
+                                <button class="btn btn--outline btn--sm">Privacy Settings</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
     </div>
 
-
-    <div class="overlay-bg"></div>
-
-    <div class="login-container overlay-form">
-      <span class="close-btn">&times;</span>
-      <h2 class="form-title">Login</h2>
-      <form class="login-form" autocomplete="off">
-        <label for="loginUsername">Username or ID</label>
-        <input type="text" id="loginUsername" required />
-
-        <label for="loginPassword">Password</label>
-        <input type="password" id="loginPassword" required />
-
-        <button type="submit" class="form-btn">Login</button>
-      </form>
-      <p>Don’t have an account? <a href="#" class="go-to-signup">Sign Up</a></p>
-    </div>
-
-
-    <div class="signup-container overlay-form">
-      <span class="close-btn">&times;</span>
-      <h2 class="form-title">Sign Up</h2>
-      <form class="login-form" autocomplete="off">
-        <label for="signupName">Full Name</label>
-        <input type="text" id="signupName" required />
-
-        <label for="signupMobile">Mobile Number</label>
-        <input type="tel" id="signupMobile" pattern="[0-9]{10}" required />
-
-        <label for="signupEmail">Email</label>
-        <input type="email" id="signupEmail" required />
-
-        <label for="signupPassword">Password</label>
-        <input type="password" id="signupPassword" required />
-
-        <button type="submit" class="form-btn">Sign Up</button>
-      </form>
-      <p>Already have an account? <a href="#" class="go-to-login">Login</a></p>
-    </div>
-
-  </div>
-
-  <script src="script.js" defer></script>
+    <script src="app.js"></script>
 </body>
 </html>
